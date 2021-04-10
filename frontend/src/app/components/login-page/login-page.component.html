@@ -1,0 +1,49 @@
+<div class="login-page-container">
+    <mat-card class="login-card">
+        <h2>Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Username</mat-label>
+                    <input matInput type="text" placeholder="Username" formControlName="username" required>
+                </mat-form-field>
+                
+                <div *ngIf="username?.invalid && (username?.dirty || username?.touched)"
+                class="alert alert-danger">
+                    <span *ngIf="username?.errors?.required">
+                        Username is required.
+                    </span>
+                    <span *ngIf="username?.errors?.minlength">
+                        Username must be at least 3 characters long.
+                    </span>
+                    <span *ngIf="username?.errors?.maxlength">
+                        Username must be longer than 12 characters.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" placeholder="Password" formControlName="password" required>
+                </mat-form-field>
+                
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+                class="alert alert-danger">
+                    <span *ngIf="password?.errors?.required">
+                        Password is required.
+                    </span>
+                    <span *ngIf="password?.errors?.minlength">
+                        Password must be at least 3 characters long.
+                    </span>
+                    <span *ngIf="password?.errors?.maxlength">
+                        Password must be longer than 12 characters.
+                    </span>
+                </div>
+            </div>
+
+            
+            <button mat-raised-button color="primary" class="submit-button" type="submit">Login</button>
+        </form>
+    </mat-card>
+</div>

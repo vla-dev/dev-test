@@ -1,4 +1,11 @@
 <mat-toolbar color="primary">
     <span>Dev Test</span>
+    <span class="spacer"></span>
+    <div *ngIf="currentUser" class="right-section">
+        <span class="username">{{currentUser}}</span>
+        <button mat-icon-button class="favorite-icon">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+    </div>
 </mat-toolbar>
   
