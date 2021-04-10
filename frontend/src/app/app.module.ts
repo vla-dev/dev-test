@@ -18,8 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 /**** COMPONENTS ****/
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { DataGenerationComponent } from './components/data-generation/data-generation.component';
-import { AggregationComponent } from './components/aggregation/aggregation.component';
 import { HeaderComponent } from './components/header/header.component';
 
 /**** REDUX STORE ****/
@@ -34,8 +32,6 @@ import { AuthService } from './services/auth.service';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    DataGenerationComponent,
-    AggregationComponent,
     LoginPageComponent
   ],
   imports: [
