@@ -1,9 +1,8 @@
 <mat-tab-group mat-align-tabs="start" class="tabs-menu" (selectedTabChange)="handleTabChange($event)">
-    <mat-tab label="Generate Data" >
+    <mat-tab label="Generate Data">
         <div class="content">
-            <button mat-raised-button color="primary" 
-                    aria-label="Generates dummy data"
-                    (click)="generateData()">Generate</button>
+            <button mat-raised-button color="primary" aria-label="Generates dummy data"
+                (click)="generateData()">Generate</button>
             <div *ngIf="cars && cars.length">
                 <table>
                     <thead>
@@ -19,26 +18,47 @@
                         <th>Gearbox</th>
                         <th>Color</th>
                     </thead>
-                    <tr *ngFor="let car of cars; let i = index">
-                        <td>{{i}}</td>
-                        <td>{{car.mark}}</td>
-                        <td>{{car.price}}</td>
-                        <td>{{car.condition}}</td>
-                        <td>{{car.origin}}</td>
-                        <td>{{car.power}}</td>
-                        <td>{{car.fuel}}</td>
-                        <td>{{car.mileage}}</td>
-                        <td>{{car.numOfSeats}}</td>
-                        <td>{{car.gearbox}}</td>
-                        <td>{{car.color}}</td>
-                    </tr>
+                    <tbody>
+                        <tr *ngFor="let car of cars; let i = index">
+                            <td>{{i}}</td>
+                            <td>{{car.mark}}</td>
+                            <td>{{car.price}}€</td>
+                            <td>{{car.condition}}</td>
+                            <td>{{car.origin}}</td>
+                            <td>{{car.power}}</td>
+                            <td>{{car.fuel}}</td>
+                            <td>{{car.mileage}}</td>
+                            <td>{{car.numOfSeats}}</td>
+                            <td>{{car.gearbox}}</td>
+                            <td>{{car.color}}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
+            <mat-spinner diameter="30" *ngIf="!cars || cars.length == 0"></mat-spinner>
         </div>
     </mat-tab>
     <mat-tab label="Aggregation">
         <div class="content">
-            <span *ngIf="aggregationTime && aggregationTime.length">{{aggregationTime}}</span>
+            <h2>Aggregates the data to show the total price / mark</h2>
+            <div *ngIf="aggregationTime && aggregationTime.length">
+                <span>Total duration: <b>{{aggregationTime}}</b></span><br/>
+                <br/>
+                <table>
+                    <thead>
+                        <th>Id</th>
+                        <th>Mark</th>
+                        <th>Total Price</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of aggregatedData; let i = index">
+                            <td>{{i}}</td>
+                            <td>{{data._id}}</td>
+                            <td>{{data.totalPrice}}€</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <mat-spinner diameter="30" *ngIf="!aggregationTime"></mat-spinner>
         </div>
     </mat-tab>

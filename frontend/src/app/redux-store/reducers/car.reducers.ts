@@ -5,9 +5,13 @@ export type Action = CarsAction.All;
 
 const defaultState: Array<Car> = [];
 
-export function carsReducers(state: Array<Car> = defaultState, action: CarsAction.AddCar) {
+export function carsReducers(state: Array<Car> = defaultState, action: Action) {
     switch(action.type){
         case CarsAction.ADD_CAR: 
             return [...state, action.payload];
+        case CarsAction.ADD_CARS: 
+            return [...state, ...action.payload];
+        default:
+            return state
     }
 }

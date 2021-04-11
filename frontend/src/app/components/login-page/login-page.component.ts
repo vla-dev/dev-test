@@ -53,15 +53,19 @@ export class LoginPageComponent implements OnInit {
     const loginSuccess = this.hasCorrectCredentials(username, password);
 
     if (loginSuccess) {
-      //for testing purpose 
-      this.byPassMongoConnection();
-
       this.api.getMongoCnnection().subscribe(
         response => {
           this.store.dispatch(new AuthActions.AddUser({
             username,
             lastLogin: Date.now()
           }));
+
+          const token = {
+            username,
+            key: 'token goes here...'
+          }
+
+          localStorage.setItem('token', JSON.stringify(token))
 
           this.loginForm.reset();
           this.router.navigate(['/']);
@@ -73,16 +77,6 @@ export class LoginPageComponent implements OnInit {
     } else {
       console.log('login failed')
     }
-  }
-
-  byPassMongoConnection(): void {
-      this.store.dispatch(new AuthActions.AddUser({
-        username: 'admin',
-        lastLogin: Date.now()
-      }));
-
-      this.loginForm.reset();
-      this.router.navigate(['/']);
   }
 }
 

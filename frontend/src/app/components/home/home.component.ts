@@ -12,12 +12,13 @@ import { CarGeneratorService } from 'src/app/services/car-generator.service';
 })
 export class HomeComponent implements OnInit {
   cars: Array<Car> = [];
-  aggregationTime: any = null;
+  aggregatedData: Array<{_id: string, totalPrice: number}> = new Array;
+  aggregationTime: string = '';
 
-  constructor(private api: ApiService, private store: Store<any>, private carGenerator: CarGeneratorService) {}
+  constructor(private api: ApiService, private store: Store<any>, private carGenerator: CarGeneratorService) { }
 
   ngOnInit(): void {
-    this.updateData();
+    this.getAllCars();
   }
 
   handleTabChange(event: { index: number; }) {
@@ -44,7 +45,8 @@ export class HomeComponent implements OnInit {
   getAggregationTime() {
     this.api.getAggregationTime().subscribe(
       (res: any) => {
-        this.aggregationTime = res.data;
+        this.aggregationTime = res.duration;
+        this.aggregatedData = res.data;
       },
       err => {
         console.error('Cannot read aggregation time. Error: ', err);
@@ -52,11 +54,15 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  getAllCars(): void {
+    this.api.getCars().subscribe((response: any) => {
+      this.store.dispatch(new CarsActions.AddCars(response.cars));
+      this.updateData();
+    })
+  }
+
   updateData(): void {
-    this.store.select('cars')
-      .subscribe((cars) => {
-        this.cars = cars;
-      });
+    this.store.select('cars').subscribe((cars) => this.cars = cars);
   }
 
 }

@@ -4,14 +4,14 @@ import { Auth } from '../models/auth.model';
 export type Action = AuthActions.All;
 
 const defaultState: Auth = {
-    user: {
-        username: "",
-    }
+    user: null
 }
 
-export function authReducers(state: Auth = defaultState, action: AuthActions.AddUser) {
+export function authReducers(state: Auth = defaultState, action: Action) {
     switch(action.type){
         case AuthActions.ADD_USER: 
             return Object.assign({}, state, {user: action.payload});
+        default:
+            return state
     }
 }

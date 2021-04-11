@@ -8,6 +8,8 @@ export class ApiService {
 
     public getMongoCnnection() { return this.http.get("/api/check-mongo-connection") }
 
+    public getCars() { return this.http.get("/api/get-cars") }
+
     public generateData(data: any) { return this.http.post("/api/generate-data", data) }
 
     public getAggregationTime() { return this.http.get("/api/get-aggregation") }

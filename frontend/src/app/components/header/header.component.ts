@@ -10,13 +10,9 @@ export class HeaderComponent implements OnInit {
   currentUser: string = '';
 
   constructor(private store: Store<any>) {
-    this.store.select('auth')
-             .subscribe((auth) => {
-                 this.currentUser = auth?.user?.username;
-             });
+    this.store.select('auth').subscribe((auth) => this.currentUser = auth?.user?.username);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

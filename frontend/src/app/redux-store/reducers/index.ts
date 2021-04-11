@@ -6,7 +6,7 @@ import { carsReducers } from './car.reducers';
 
 export interface ReduxStore {
     auth: Auth;
-    cars: Array<Car>
+    cars: Array<Car | any>
 };
 
 export const reducers: ActionReducerMap<ReduxStore, any> = {

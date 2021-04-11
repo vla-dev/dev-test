@@ -13,6 +13,12 @@ exports.plugin = {
 
         server.route({
             method: 'GET',
+            path: '/api/get-cars',
+            handler: Handlers.getCars(options)
+        });
+
+        server.route({
+            method: 'GET',
             path: '/api/get-aggregation',
             handler: Handlers.getAggregation(options)
         });

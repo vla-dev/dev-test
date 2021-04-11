@@ -3,8 +3,9 @@ const Mongo     = require('./mongo/database');
 const Hapi      = require('@hapi/hapi');
 
 const init = async () => {
+    const mongoHost = process.env.SERVER_HOST === 'localhost' ? '127.0.0.1:27017' : 'mongo-db';
     const dbConnection = Mongo.connect({
-        url: "mongodb://mongo-db/database",
+        url: `mongodb://${mongoHost}/database`,
         options: {
             useNewUrlParser: true,
             useUnifiedTopology: true 
