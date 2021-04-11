@@ -7,19 +7,19 @@ exports.plugin = {
 
         server.route({
             method: 'GET',
-            path: '/check-mongo-connection',
+            path: '/api/check-mongo-connection',
             handler: Handlers.checkMongoConnection(options)
         });
 
         server.route({
             method: 'GET',
-            path: '/get-aggregation',
+            path: '/api/get-aggregation',
             handler: Handlers.getAggregation(options)
         });
 
         server.route({
             method: 'POST',
-            path: '/generate-dummy',
+            path: '/api/generate-data',
             handler: Handlers.generateData(options)
         });
     }

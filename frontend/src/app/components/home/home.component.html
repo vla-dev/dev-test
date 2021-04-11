@@ -4,11 +4,42 @@
             <button mat-raised-button color="primary" 
                     aria-label="Generates dummy data"
                     (click)="generateData()">Generate</button>
+            <div *ngIf="cars && cars.length">
+                <table>
+                    <thead>
+                        <th>Id</th>
+                        <th>Mark</th>
+                        <th>Price</th>
+                        <th>Condition</th>
+                        <th>Origin</th>
+                        <th>Power</th>
+                        <th>Fuel</th>
+                        <th>Mileage</th>
+                        <th>Num of seats</th>
+                        <th>Gearbox</th>
+                        <th>Color</th>
+                    </thead>
+                    <tr *ngFor="let car of cars; let i = index">
+                        <td>{{i}}</td>
+                        <td>{{car.mark}}</td>
+                        <td>{{car.price}}</td>
+                        <td>{{car.condition}}</td>
+                        <td>{{car.origin}}</td>
+                        <td>{{car.power}}</td>
+                        <td>{{car.fuel}}</td>
+                        <td>{{car.mileage}}</td>
+                        <td>{{car.numOfSeats}}</td>
+                        <td>{{car.gearbox}}</td>
+                        <td>{{car.color}}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </mat-tab>
     <mat-tab label="Aggregation">
         <div class="content">
-            <span>Aggregation time goes here!</span>
+            <span *ngIf="aggregationTime && aggregationTime.length">{{aggregationTime}}</span>
+            <mat-spinner diameter="30" *ngIf="!aggregationTime"></mat-spinner>
         </div>
     </mat-tab>
 </mat-tab-group>

@@ -1,5 +1,18 @@
 .tabs-menu {
     .content {
         padding: 1rem;
+
+        table {
+            width: 100%;
+
+            th {
+                text-align: left;
+            }
+
+            th, td {
+                border: 1px solid rgb(233, 233, 233);
+                height: 2rem;
+            }
+        }
     }
 }

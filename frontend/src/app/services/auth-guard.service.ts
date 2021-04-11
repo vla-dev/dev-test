@@ -11,7 +11,7 @@ export class AuthGuardService implements CanActivate {
         this.store.select('auth')
              .subscribe((auth) => {
                  this.authenticated = !!(auth && auth.user);
-             });
+        });
     }
 
     canActivate(): boolean {
