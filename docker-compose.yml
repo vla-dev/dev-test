@@ -1,0 +1,40 @@
+version: '3'
+
+volumes:
+  devTestMongoVolume: 
+    external:
+      name: devTestMongoVolume
+
+services:
+  mongo-db:
+    image: mongo
+    container_name: dev-test-mongo-db
+    restart: always
+    volumes: 
+      - devTestMongoVolume:/data/db
+    ports: 
+      - 27017:27017
+  dev-test-api:
+    build: 
+      context: ./backend
+      network: host
+    container_name: dev-test-api
+    restart: always
+    environment:
+      - SERVER_HOST=0.0.0.0
+    volumes: 
+      - ./backend:/usr/src/app
+    ports:
+      - 8090:8090
+    depends_on: 
+      - mongo-db
+  dev-test-ui:
+    build: 
+      context: ./frontend
+      network: host
+    container_name: dev-test-ui
+    restart: always
+    volumes: 
+      - .:/usr/src/app
+    ports:
+      - 80:80

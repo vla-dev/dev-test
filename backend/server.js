@@ -4,7 +4,7 @@ const Hapi      = require('@hapi/hapi');
 
 const init = async () => {
     const dbConnection = Mongo.connect({
-        url: "mongodb://localhost:27017/database",
+        url: "mongodb://mongo-db/database",
         options: {
             useNewUrlParser: true,
             useUnifiedTopology: true 
@@ -13,7 +13,7 @@ const init = async () => {
 
     const server = Hapi.server({
         port: 8090,
-        host: 'localhost' 
+        host: process.env.SERVER_HOST 
     });
 
     await server.register({
